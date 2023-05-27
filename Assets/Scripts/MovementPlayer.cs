@@ -65,7 +65,8 @@ public class MovementPlayer : MonoBehaviour
         {
             ChangeAnimationState(PLAYER_WalkRight);
         }
-      
+
+
 
     }
 
