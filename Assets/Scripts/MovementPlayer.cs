@@ -15,25 +15,9 @@ public class MovementPlayer : MonoBehaviour
     public float forceDamping;
 
 
-
-
-
-    //Animations
-
     Animator animator;
-    string currentState;
-    const string PLAYER_WalkUp = "Player_FrontWalk";
-    const string PLAYER_IdleUp = "Player_FrontIdle";
 
-    const string PLAYER_WalkDown = "Player_BackWalk";
-    const string PLAYER_IdleDown = "Player_BackIdle";
 
-    const string PLAYER_WalkLeft = "Player_LeftIdle";
-    const string PLAYER_IdleLeft = "Player_LeftIdle";
-
-    const string PLAYER_WalkRight = "Player_RightIdle";
-    const string PLAYER_IdleRight = "Player_RightIdle";
-        
 
     void Start()
     {
@@ -47,6 +31,10 @@ public class MovementPlayer : MonoBehaviour
         horizontalMov = Input.GetAxisRaw("Horizontal");
         verticalMov = Input.GetAxisRaw("Vertical");
         PlayerInput = new Vector2(horizontalMov, verticalMov).normalized;
+
+        animator.SetFloat("Horizontal", horizontalMov);
+        animator.SetFloat("Vertical", verticalMov);
+        animator.SetFloat("Speed", PlayerInput.sqrMagnitude);
     }
 
 
@@ -60,12 +48,6 @@ public class MovementPlayer : MonoBehaviour
             forceToApply = Vector2.zero;
         }
         rb.velocity = moveForce;
-
-        if (horizontalMov > 0)
-        {
-            ChangeAnimationState(PLAYER_WalkRight);
-        }
-
 
 
     }
@@ -81,14 +63,4 @@ public class MovementPlayer : MonoBehaviour
         }
     }
 
-
-
-    void ChangeAnimationState(string newState)
-    {
-        if (currentState == newState);
-
-        animator.Play(newState);
-
-        currentState = newState;
-    }
 }
