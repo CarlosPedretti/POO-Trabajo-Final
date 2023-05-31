@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Animations/Animaciones Oficiales/P_RightWalk.anim.meta
 guid: a7b093c1f306b96458a44a32ee141f74
+========
+guid: facace9fa84ad2c4cba052edef16d016
+>>>>>>>> ffe7a375c96902c12e9296d793349345a3fb24e3:Assets/Animations/Animaciones Oficiales/P_DownIdle.anim.meta
 NativeFormatImporter:
   externalObjects: {}
   mainObjectFileID: 7400000
