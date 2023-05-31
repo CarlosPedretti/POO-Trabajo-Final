@@ -1,5 +1,10 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Nueva carpeta/Assets - copia/Scenes/Game.unity.meta
 guid: a0b4e651eb95e91438c2051bfad56c4c
+========
+guid: 465bb4d5b14a2bc47829f946bf38ec73
+folderAsset: yes
+>>>>>>>> ffe7a375c96902c12e9296d793349345a3fb24e3:Assets/Animations/Animaciones Oficiales.meta
 DefaultImporter:
   externalObjects: {}
   userData: 

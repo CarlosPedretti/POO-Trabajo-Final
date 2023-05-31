@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Nueva carpeta/Assets - copia/Animations/Idles/Player_BackIdle.anim.meta
 guid: ecefec0a2396bcb419d1159bdcb86484
+========
+guid: a7b093c1f306b96458a44a32ee141f74
+>>>>>>>> ffe7a375c96902c12e9296d793349345a3fb24e3:Assets/Animations/Animaciones Oficiales/P_RightWalk.anim.meta
 NativeFormatImporter:
   externalObjects: {}
   mainObjectFileID: 7400000
