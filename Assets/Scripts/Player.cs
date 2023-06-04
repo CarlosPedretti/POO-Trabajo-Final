@@ -10,9 +10,9 @@ public class Player : MonoBehaviour
     public Vector2 PlayerInput;
     float horizontalMov;
     float verticalMov;
-    public float forceDamping;
     Animator animator;
 
+    public Plant plant;
 
 
 
@@ -32,8 +32,31 @@ public class Player : MonoBehaviour
        animator.SetFloat("Horizontal", horizontalMov);
        animator.SetFloat("Vertical", verticalMov);
        animator.SetFloat("Speed", PlayerInput.sqrMagnitude);
-        
-      
+
+
+
+
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            RaycastHit2D[] hits = Physics2D.CircleCastAll(transform.position, 1f, Vector2.zero);
+            foreach (RaycastHit2D hit in hits)
+            {
+                Plant plant = hit.collider.GetComponent<Plant>();
+                if (plant != null)
+                {
+                    plant.PlantSeed();
+
+                }
+            }
+        }
+
+        /*if (Input.GetKeyDown(KeyCode.F))
+        {
+            plant.IsWatered = true;
+            plant.PlantSeed();
+        }*/
+
+
     }
 
 
