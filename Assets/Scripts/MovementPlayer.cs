@@ -39,16 +39,10 @@ public class MovementPlayer : MonoBehaviour
 
     void FixedUpdate()
     {
-<<<<<<< HEAD
-       Vector2 moveForce = PlayerInput * moveSpeed;
-       rb.velocity = moveForce;
-      
-=======
         Vector2 moveForce = PlayerInput * moveSpeed;
 
         rb.velocity = moveForce;
 
->>>>>>> ffe7a375c96902c12e9296d793349345a3fb24e3
     }
     
    
