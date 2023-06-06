@@ -29,11 +29,11 @@ public class Plant : MonoBehaviour
     }
 
 
-    public bool IsWatered
+    /*public bool IsWatered
     {
         get { return isFullyGrown; }
         set { isFullyGrown = value; }
-    }
+    }*/
 
     /*void OnCollisionEnter2D(Collision2D collision)
     {
