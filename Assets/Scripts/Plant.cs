@@ -35,40 +35,40 @@ public class Plant : MonoBehaviour
         set { isFullyGrown = value; }
     }*/
 
-    /*void OnCollisionEnter2D(Collision2D collision)
+/*void OnCollisionEnter2D(Collision2D collision)
+{
+    if (collision.gameObject.tag == "Player")
     {
-        if (collision.gameObject.tag == "Player")
-        {
-
-        }
-
-    }*/
-
-    private void Update()
-    {
-        if (isPlanted && !isFullyGrown)
-        {
-
-            currentWateringTime -= Time.deltaTime;
-            if (currentWateringTime <= 0f)
-            {
-                isWatered = true;
-            }
-
-            if (isWatered)
-            {
-                currentGrowthTime -= Time.deltaTime;
-                if (currentGrowthTime <= 0f)
-                {
-                    isFullyGrown = true;
-
-                    // Intenar algun dia una animación de crecimiento, pronto Carlito... :c
-                }
-            }
-
-        }
-
-
 
     }
+
+}*/
+
+private void Update()
+{
+    if (isPlanted && !isFullyGrown)
+    {
+
+        currentWateringTime -= Time.deltaTime;
+        if (currentWateringTime <= 0f)
+        {
+            isWatered = true;
+        }
+
+        if (isWatered)
+        {
+            currentGrowthTime -= Time.deltaTime;
+            if (currentGrowthTime <= 0f)
+            {
+                isFullyGrown = true;
+
+                // Intenar algun dia una animación de crecimiento, pronto Carlito... :c
+            }
+        }
+
+    }
+
+
+
+}
 }

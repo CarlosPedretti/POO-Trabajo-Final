@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
- 
+
 public class Player : MonoBehaviour
 {
 
@@ -25,13 +25,13 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        
-       horizontalMov = Input.GetAxisRaw("Horizontal");
-       verticalMov = Input.GetAxisRaw("Vertical");
-       PlayerInput = new Vector2(horizontalMov, verticalMov).normalized;
-       animator.SetFloat("Horizontal", horizontalMov);
-       animator.SetFloat("Vertical", verticalMov);
-       animator.SetFloat("Speed", PlayerInput.sqrMagnitude);
+
+        horizontalMov = Input.GetAxisRaw("Horizontal");
+        verticalMov = Input.GetAxisRaw("Vertical");
+        PlayerInput = new Vector2(horizontalMov, verticalMov).normalized;
+        animator.SetFloat("Horizontal", horizontalMov);
+        animator.SetFloat("Vertical", verticalMov);
+        animator.SetFloat("Speed", PlayerInput.sqrMagnitude);
 
 
 
@@ -49,14 +49,6 @@ public class Player : MonoBehaviour
                 }
             }
         }
-
-        /*if (Input.GetKeyDown(KeyCode.F))
-        {
-            plant.IsWatered = true;
-            plant.PlantSeed();
-        }*/
-
-
     }
 
 
@@ -66,8 +58,37 @@ public class Player : MonoBehaviour
 
         rb.velocity = moveForce;
     }
-    
-   
+
+
+    //Recolección semillas
+
+    private Dictionary<string, int> seedInventory = new Dictionary<string, int>();
+
+    public void CollectSeed(string seedType, int amount)
+    {
+        if (seedInventory.ContainsKey(seedType))
+        {
+            seedInventory[seedType] += amount;
+        }
+        else
+        {
+            seedInventory[seedType] = amount;
+        }
+
+        Debug.Log("Semilla de tipo " + seedType + " recolectada. Cantidad actual: " + seedInventory[seedType]);
+    }
+
+    public int GetSeedCount(string seedType)
+    {
+        if (seedInventory.ContainsKey(seedType))
+        {
+            return seedInventory[seedType];
+        }
+        else
+        {
+            return 0;
+        }
+    }
 
 
 }
