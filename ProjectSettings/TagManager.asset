@@ -7,11 +7,12 @@ TagManager:
   - point
   - Plant
   - FlowerPot
+  - ReceptorPlanta
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Plant
   - Water
   - UI
   - Player

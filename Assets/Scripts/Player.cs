@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-
     public Rigidbody2D rb;
     public float moveSpeed;
     public Vector2 PlayerInput;
@@ -12,20 +11,24 @@ public class Player : MonoBehaviour
     float verticalMov;
     Animator animator;
 
-    public Plant plant;
+    public ReceptorPlanta receptorPlanta;
 
-
-
+    private bool canPressF;
+    private bool canPressG;
 
     void Start()
     {
         animator = gameObject.GetComponent<Animator>();
     }
 
+    void FixedUpdate()
+    {
+        Vector2 moveForce = PlayerInput * moveSpeed;
+        rb.velocity = moveForce;
+    }
 
     void Update()
     {
-
         horizontalMov = Input.GetAxisRaw("Horizontal");
         verticalMov = Input.GetAxisRaw("Vertical");
         PlayerInput = new Vector2(horizontalMov, verticalMov).normalized;
@@ -33,31 +36,73 @@ public class Player : MonoBehaviour
         animator.SetFloat("Vertical", verticalMov);
         animator.SetFloat("Speed", PlayerInput.sqrMagnitude);
 
-
-
-
-        if (Input.GetKeyDown(KeyCode.F))
+        if (canPressF && Input.GetKeyDown(KeyCode.F))
         {
-            RaycastHit2D[] hits = Physics2D.CircleCastAll(transform.position, 1f, Vector2.zero);
-            foreach (RaycastHit2D hit in hits)
-            {
-                Plant plant = hit.collider.GetComponent<Plant>();
-                if (plant != null)
-                {
-                    plant.PlantSeed();
+            canPressF = false;
+            Debug.Log("aprete F");
+            PlantPlant();
+        }
 
-                }
+        if (canPressG && Input.GetKeyDown(KeyCode.G))
+        {
+            canPressG = false;
+            Debug.Log("aprete G");
+            WaterPlant();
+        }
+
+        if (canPressF && Input.GetKeyUp(KeyCode.F))
+        {
+            canPressF = true;
+        }
+
+        if (canPressG && Input.GetKeyUp(KeyCode.G))
+        {
+            canPressG = true;
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+     
+            canPressF = true;
+            canPressG = true;
+        
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+
+        
+            canPressF = false;
+            canPressG = false;
+        
+    }
+
+    private void PlantPlant()
+    {
+        if (receptorPlanta != null && receptorPlanta.IsPlantable())
+        {
+            receptorPlanta.Plant();
+        }
+    }
+
+    private void WaterPlant()
+    {
+        if (receptorPlanta != null)
+        {
+            Planta planta = receptorPlanta.GetComponentInChildren<Planta>();
+            if (planta != null)
+            {
+
+                
+                    planta.Watering();
+                    Debug.Log("Me acabo de ejecutar WaterPlant()");
+                
+
             }
         }
     }
 
-
-    void FixedUpdate()
-    {
-        Vector2 moveForce = PlayerInput * moveSpeed;
-
-        rb.velocity = moveForce;
-    }
 
 
     //Recolección semillas
