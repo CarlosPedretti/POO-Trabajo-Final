@@ -12,6 +12,9 @@ public class Player : MonoBehaviour
     float verticalMov;
     public float forceDamping;
     Animator animator;
+    public bool canMove = true;
+    [SerializeField] private Vector2 velocityRebound;
+
 
 
 
@@ -20,6 +23,7 @@ public class Player : MonoBehaviour
     void Start()
     {
         animator = gameObject.GetComponent<Animator>();
+       
     }
 
 
@@ -39,13 +43,19 @@ public class Player : MonoBehaviour
 
     void FixedUpdate()
     {
-        Vector2 moveForce = PlayerInput * moveSpeed;
-
-        rb.velocity = moveForce;
-
+        if(canMove)
+        {
+            Vector2 moveForce = PlayerInput * moveSpeed;
+            rb.velocity = moveForce;
+        }
+       
     }
-    
-   
+
+    public void Rebound(Vector2 punchPoint)
+    {
+        rb.velocity = new Vector2(-velocityRebound.y * punchPoint.y, velocityRebound.x);
+    }
+
 
 
 }

@@ -4,19 +4,31 @@ using UnityEngine;
 
 public class HealthPlayer : MonoBehaviour
 {
-    [SerializeField] private float health;
-
-    
- 
-    public void TakeDamage(float damage, Vector2 position)
+    [SerializeField] private int maxHealth = 100;
+    [SerializeField] private int currentHealth;
+    [SerializeField] private HealthBar healthBar;
+    private Player player;
+    [SerializeField] private float timeLostControl;
+    void Start()
     {
-        health -= damage;
-       if(health == 0)
+        currentHealth = maxHealth;
+        healthBar.SetMaxHealth(maxHealth);
+        player = GetComponent<Player>();
+    }
+
+  
+    public void TakeDamage(int damage)
+    {
+        currentHealth -= damage;
+        healthBar.SetHealth(currentHealth);
+        if (currentHealth <= 0)
         {
             Destroy(gameObject);
+
         }
+
     }
 
 
-    
+
 }
