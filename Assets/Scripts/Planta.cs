@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Planta : MonoBehaviour
@@ -16,7 +17,7 @@ public class Planta : MonoBehaviour
         spriteRenderer = gameObject.AddComponent<SpriteRenderer>();
         spriteRenderer.sprite = plantConfig.growthSprites[0];
         spriteRenderer.transform.localScale = new Vector3(1f, 1f, 1f);
-        spriteRenderer.sortingLayerName = "Plants"; // Asigna el sorting layer deseado para las plantas
+        spriteRenderer.sortingLayerName = "Plants"; // Asigno el sorting layer deseado para las plantas
         spriteRenderer.sortingOrder = 1; // Asigna el SortingOrder como 1 para todas las plantas
         isWatered = false;
         isFullyGrown = false;
@@ -71,7 +72,7 @@ public class Planta : MonoBehaviour
             {
                 spriteRenderer.sprite = plantConfig.growthSprites[spriteIndex];
 
-                //spriteRenderer.transform.localScale = new Vector3(5f, 5f, 1f); // Ajusta los valores según tu necesidad
+                //spriteRenderer.transform.localScale = new Vector3(5f, 5f, 1f); // No utilizar, Hardcoding.
             }
 
             yield return null;

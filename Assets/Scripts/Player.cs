@@ -39,14 +39,17 @@ public class Player : MonoBehaviour
         if (canPressF && Input.GetKeyDown(KeyCode.F))
         {
             canPressF = false;
-            Debug.Log("aprete F");
+            Debug.Log("Apreté F");
             PlantPlant();
+
+            //private ReceptorPlanta receptorPlanta;
+            //receptorPlanta.GetComponent<ReceptorPlanta>();
         }
 
         if (canPressG && Input.GetKeyDown(KeyCode.G))
         {
             canPressG = false;
-            Debug.Log("aprete G");
+            Debug.Log("Apreté G");
             WaterPlant();
         }
 
@@ -63,8 +66,9 @@ public class Player : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-     
-            canPressF = true;
+
+        receptorPlanta = other.GetComponent<ReceptorPlanta>();
+        canPressF = true;
             canPressG = true;
         
     }
@@ -72,7 +76,7 @@ public class Player : MonoBehaviour
     private void OnTriggerExit2D(Collider2D other)
     {
 
-        
+        receptorPlanta = other.GetComponent<ReceptorPlanta>();
             canPressF = false;
             canPressG = false;
         
@@ -93,11 +97,8 @@ public class Player : MonoBehaviour
             Planta planta = receptorPlanta.GetComponentInChildren<Planta>();
             if (planta != null)
             {
-
-                
                     planta.Watering();
                     Debug.Log("Me acabo de ejecutar WaterPlant()");
-                
 
             }
         }
@@ -105,7 +106,7 @@ public class Player : MonoBehaviour
 
 
 
-    //Recolección semillas
+    //Recolección semillas, todavía en desarrollo
 
     private Dictionary<string, int> seedInventory = new Dictionary<string, int>();
 

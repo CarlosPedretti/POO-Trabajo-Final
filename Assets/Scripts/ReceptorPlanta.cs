@@ -4,9 +4,20 @@ using UnityEngine;
 
 public class ReceptorPlanta : MonoBehaviour
 {
+
     public PlantConfig plantConfig;
 
+    //private ReceptorPlanta receptorPlanta;
+    //receptorPlanta.GetComponent<ReceptorPlanta>();
+
     private Planta plantedPlant;
+
+
+    void Start()
+    {
+
+    }
+
 
     public bool IsPlantable()
     {
@@ -22,6 +33,7 @@ public class ReceptorPlanta : MonoBehaviour
             Debug.Log("Ya hay una planta plantada en este receptor");
             return;
         }
+
 
         Debug.Log("Plant() called");
         GameObject newPlantObject = new GameObject("Plant_" + plantConfig.plantName);
