@@ -36,7 +36,7 @@ public class Player : MonoBehaviour
         animator.SetFloat("Vertical", verticalMov);
         animator.SetFloat("Speed", PlayerInput.sqrMagnitude);
 
-        if (canPressF && Input.GetKeyDown(KeyCode.F))
+        /*if (canPressF && Input.GetKeyDown(KeyCode.F))
         {
             canPressF = false;
             Debug.Log("Apreté F");
@@ -61,10 +61,45 @@ public class Player : MonoBehaviour
         if (canPressG && Input.GetKeyUp(KeyCode.G))
         {
             canPressG = true;
+        }*/
+
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            RaycastHit2D[] hits = Physics2D.CircleCastAll(transform.position, 0.5f, Vector2.zero);
+
+            Debug.Log("Apreté F");
+
+            foreach (RaycastHit2D hit in hits)
+            {
+                receptorPlanta = hit.collider.GetComponent<ReceptorPlanta>();
+                if (receptorPlanta != null)
+                {
+                    PlantPlant();
+                }
+
+            }
         }
+
+        if (Input.GetKeyDown(KeyCode.G))
+        {
+            RaycastHit2D[] hits = Physics2D.CircleCastAll(transform.position, 0.5f, Vector2.zero);
+
+            Debug.Log("Apreté G");
+
+            foreach (RaycastHit2D hit in hits)
+            {
+                receptorPlanta = hit.collider.GetComponent<ReceptorPlanta>();
+                if (receptorPlanta != null)
+                {
+                    WaterPlant();
+                }
+
+            }
+        }
+
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    /*private void OnTriggerEnter2D(Collider2D other)
     {
 
         receptorPlanta = other.GetComponent<ReceptorPlanta>();
@@ -80,7 +115,7 @@ public class Player : MonoBehaviour
             canPressF = false;
             canPressG = false;
         
-    }
+    }*/
 
     private void PlantPlant()
     {
