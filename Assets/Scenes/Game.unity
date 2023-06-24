@@ -237,6 +237,7 @@ GameObject:
   - component: {fileID: 106728082}
   - component: {fileID: 106728081}
   - component: {fileID: 106728083}
+  - component: {fileID: 106728084}
   m_Layer: 0
   m_Name: Virtual Camera
   m_TagString: Untagged
@@ -316,6 +317,18 @@ MonoBehaviour:
   m_BoundingShape2D: {fileID: 0}
   m_ConfineScreenEdges: 1
   m_Damping: 0
+--- !u!114 &106728084
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 106728080}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11b4081af12df7648993beef931e574c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -807,8 +820,6 @@ MonoBehaviour:
   moveSpeed: 7
   PlayerInput: {x: 10, y: 10}
   forceDamping: 1.2
-  canMove: 1
-  velocityRebound: {x: 0, y: 0}
 --- !u!114 &551670020
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -824,7 +835,6 @@ MonoBehaviour:
   maxHealth: 100
   currentHealth: 0
   healthBar: {fileID: 523132474}
-  timeLostControl: 0
 --- !u!1 &557373687
 GameObject:
   m_ObjectHideFlags: 0
@@ -841,7 +851,7 @@ GameObject:
   - component: {fileID: 557373696}
   m_Layer: 7
   m_Name: MilkaEnemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6486,7 +6496,7 @@ GameObject:
   - component: {fileID: 1163861301}
   m_Layer: 7
   m_Name: MilkaVencida
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6689,6 +6699,7 @@ GameObject:
   - component: {fileID: 1265876470}
   - component: {fileID: 1265876472}
   - component: {fileID: 1265876473}
+  - component: {fileID: 1265876474}
   m_Layer: 0
   m_Name: cm
   m_TagString: Untagged
@@ -6766,6 +6777,23 @@ MonoBehaviour:
   m_MaximumFOV: 60
   m_MinimumOrthoSize: 1
   m_MaximumOrthoSize: 5000
+--- !u!114 &1265876474
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1265876469}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68bb026fafb42b14791938953eaace77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_NoiseProfile: {fileID: 11400000, guid: 69ce8388f6785dd4c8c39915efece2f4, type: 2}
+  m_PivotOffset: {x: 0, y: 0, z: 0}
+  m_AmplitudeGain: 0
+  m_FrequencyGain: 0
+  mNoiseOffsets: {x: 0, y: 0, z: 0}
 --- !u!1 &1313493356
 GameObject:
   m_ObjectHideFlags: 0
@@ -6885,7 +6913,7 @@ GameObject:
   - component: {fileID: 1469455861}
   m_Layer: 7
   m_Name: MilkaEnemy (1)
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

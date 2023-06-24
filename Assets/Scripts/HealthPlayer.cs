@@ -8,7 +8,7 @@ public class HealthPlayer : MonoBehaviour
     [SerializeField] private int currentHealth;
     [SerializeField] private HealthBar healthBar;
     private Player player;
-    [SerializeField] private float timeLostControl;
+
     void Start()
     {
         currentHealth = maxHealth;

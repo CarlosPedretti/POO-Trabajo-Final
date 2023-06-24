@@ -12,8 +12,7 @@ public class Player : MonoBehaviour
     float verticalMov;
     public float forceDamping;
     Animator animator;
-    public bool canMove = true;
-    [SerializeField] private Vector2 velocityRebound;
+
 
 
 
@@ -43,19 +42,17 @@ public class Player : MonoBehaviour
 
     void FixedUpdate()
     {
-        if(canMove)
-        {
-            Vector2 moveForce = PlayerInput * moveSpeed;
-            rb.velocity = moveForce;
-        }
-       
+      Vector2 moveForce = PlayerInput * moveSpeed;
+      rb.velocity = moveForce;
     }
 
-    public void Rebound(Vector2 punchPoint)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        rb.velocity = new Vector2(-velocityRebound.y * punchPoint.y, velocityRebound.x);
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            Vector2 difference = transform.position - collision.transform.position;
+            transform.position = new Vector2(transform.position.x + difference.x, transform.position.y + difference.y);
+        }
     }
-
-
-
+ 
 }

@@ -12,6 +12,7 @@ public class IAenemy : MonoBehaviour
 
 
 
+
     private void Start()
     {
      randomNumber = Random.Range(0, points.Length);
@@ -40,4 +41,6 @@ public class IAenemy : MonoBehaviour
             spriteRenderer.flipX = true;
         }
     }
+
+  
 }
