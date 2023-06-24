@@ -156,7 +156,10 @@ public class Player : MonoBehaviour
             seedInventory[seedType] = amount;
         }
 
-        Debug.Log("Semilla de tipo " + seedType + " recolectada. Cantidad actual: " + seedInventory[seedType]);
+        GameManager.Instance.UpdateSeedUI(seedType, GetSeedCount(seedType));
+
+
+
     }
 
     public int GetSeedCount(string seedType)
