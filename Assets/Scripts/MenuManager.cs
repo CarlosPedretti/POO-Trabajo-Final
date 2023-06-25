@@ -17,4 +17,11 @@ public class MenuManager : MonoBehaviour
         Debug.Log("Exit...");
         Application.Quit();
     }
+
+
+
+    public void RestartMenu()
+    {
+        SceneManager.LoadScene("Menu");
+    }
 }
