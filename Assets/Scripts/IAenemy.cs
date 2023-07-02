@@ -4,68 +4,43 @@ using UnityEngine;
 
 public class IAenemy : MonoBehaviour
 {
-    public GameObject[] points;
-    public float speed;
-    public float time;
-    private int random;
-    private int currentIndex = 0;
-    private bool isMovingRight = true;
+   [SerializeField] private float speed;
+   [SerializeField] private Transform[] points;
+   [SerializeField] private float distance;
+    private int randomNumber;
+    private SpriteRenderer spriteRenderer;
+
+
+
 
     private void Start()
     {
-        points = GameObject.FindGameObjectsWithTag("point");
-        random = Random.Range(0, points.Length);
+        randomNumber = Random.Range(0, points.Length);
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        Spin();
     }
 
     private void Update()
     {
-        MoveToNextPoint();
-        CheckArrivedAtPoint();
-        UpdateCharacterDirection();
-    }
-
-    private void MoveToNextPoint()
-    {
-        Vector3 targetPosition = points[random].transform.position;
-        transform.position = Vector2.MoveTowards(transform.position, targetPosition, speed * Time.deltaTime);
-    }
-
-    private void CheckArrivedAtPoint()
-    {
-        float distance = Vector2.Distance(transform.position, points[random].transform.position);
-        if (distance < 0.2f)
+        transform.position = Vector2.MoveTowards(transform.position, points[randomNumber].position, speed * Time.deltaTime);
+        if(Vector2.Distance(transform.position, points[randomNumber].position)<distance)
         {
-            time += Time.deltaTime;
-            if (time >= 3)
-            {
-                time = 0;
-                currentIndex = random;
-                random = GetRandomPointIndex();
-            }
+            randomNumber = Random.Range(0, points.Length);
+            Spin();
         }
     }
 
-    private int GetRandomPointIndex()
+    private void Spin()
     {
-        int newIndex = Random.Range(0, points.Length);
-        while (newIndex == currentIndex)
+        if(transform.position.x < points[randomNumber].position.x)
         {
-            newIndex = Random.Range(0, points.Length);
+            spriteRenderer.flipX = false;
         }
-        return newIndex;
+        else
+        {
+            spriteRenderer.flipX = true;
+        }
     }
 
-    private void UpdateCharacterDirection()
-    {
-        if (transform.position.x < points[random].transform.position.x && !isMovingRight)
-        {
-            isMovingRight = true;
-            transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
-        }
-        else if (transform.position.x > points[random].transform.position.x && isMovingRight)
-        {
-            isMovingRight = false;
-            transform.localScale = new Vector3(-Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
-        }
-    }
+  
 }
