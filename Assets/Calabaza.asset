@@ -20,3 +20,4 @@ MonoBehaviour:
   - {fileID: 241135699, guid: 181349581160605408c6a7f8d4a8b6da, type: 3}
   growthTime: 8
   wateringTime: 6
+  quantityOfWaterNeeded: 10

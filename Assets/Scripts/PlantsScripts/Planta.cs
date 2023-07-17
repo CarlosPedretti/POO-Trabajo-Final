@@ -11,9 +11,14 @@ public class Planta : MonoBehaviour
     private bool isWatered;
     private bool isFullyGrown;
 
+    private int currentWaterNeeded;
+
     public void Setup(PlantConfig config)
     {
         plantConfig = config;
+
+        currentWaterNeeded = plantConfig.quantityOfWaterNeeded;
+
         spriteRenderer = gameObject.AddComponent<SpriteRenderer>();
         spriteRenderer.sprite = plantConfig.growthSprites[0];
         spriteRenderer.transform.localScale = new Vector3(1f, 1f, 1f);
@@ -21,20 +26,28 @@ public class Planta : MonoBehaviour
         spriteRenderer.sortingOrder = 1; // Asigna el SortingOrder como 1 para todas las plantas
         isWatered = false;
         isFullyGrown = false;
+
     }
 
-    public void Watering()
+    public int Watering(int currentWaterAmount)
     {
-        if (isWatered)
+        if (isWatered || isFullyGrown)
         {
-            return;
+            return 0;
         }
 
-        if (wateringCoroutine == null)
+        int waterConsumed = Mathf.Min(currentWaterNeeded, currentWaterAmount);
+        currentWaterNeeded -= waterConsumed;
+        Debug.Log("Cantidad de agua consumida por la planta: " + waterConsumed);
+
+        if (currentWaterNeeded <= 0)
         {
-            wateringCoroutine = StartCoroutine(WateringCoroutine());
+            StartCoroutine(GrowingCoroutine());
         }
+
+        return waterConsumed;
     }
+
 
     IEnumerator WateringCoroutine()
     {
@@ -72,7 +85,6 @@ public class Planta : MonoBehaviour
             {
                 spriteRenderer.sprite = plantConfig.growthSprites[spriteIndex];
 
-                //spriteRenderer.transform.localScale = new Vector3(5f, 5f, 1f); // No utilizar, Hardcoding.
             }
 
             yield return null;

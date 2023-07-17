@@ -7,9 +7,6 @@ public class ReceptorPlanta : MonoBehaviour
 
     public PlantConfig plantConfig;
 
-    //private ReceptorPlanta receptorPlanta;
-    //receptorPlanta.GetComponent<ReceptorPlanta>();
-
     private Planta plantedPlant;
 
 

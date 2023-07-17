@@ -17,6 +17,10 @@ public class GameManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI seedCountText2;
     [SerializeField] private TextMeshProUGUI seedCountText3;
 
+    [SerializeField] private TextMeshProUGUI waterCountText;
+
+    public static int currentWaterOnWateringCan;
+
 
     public static GameManager Instance { get; private set; }
 
@@ -38,7 +42,7 @@ public class GameManager : MonoBehaviour
 
     }
 
-    //UI Semillas
+    //UI Seeds
 
     public void UpdateSeedUI(string seedType, int seedCount)
     {
@@ -55,6 +59,13 @@ public class GameManager : MonoBehaviour
         {
             seedCountText3.text = "x" + seedCount.ToString();
         }
+    }
+
+
+    //UI Water
+    public void UpdateWaterUI()
+    {
+        waterCountText.text = currentWaterOnWateringCan.ToString() + "L";
     }
 
 

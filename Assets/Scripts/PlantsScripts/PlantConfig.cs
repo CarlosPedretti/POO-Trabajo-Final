@@ -9,4 +9,5 @@ public class PlantConfig : ScriptableObject
     public Sprite[] growthSprites;
     public float growthTime;
     public float wateringTime;
+    public int quantityOfWaterNeeded;
 }
