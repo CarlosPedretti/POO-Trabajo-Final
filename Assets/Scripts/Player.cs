@@ -110,7 +110,7 @@ public class Player : MonoBehaviour
                 currentWaterOnWateringCan -= waterConsumed;
                 Debug.Log("Me acabo de ejecutar WaterPlant(). Agua consumida: " + waterConsumed);
 
-                // Asegurarse de que currentWaterOnWateringCan no sea negativo
+                // Se asegura de que currentWaterOnWateringCan no sea negativo
                 currentWaterOnWateringCan = Mathf.Max(0, currentWaterOnWateringCan);
                 GameManager.currentWaterOnWateringCan = currentWaterOnWateringCan;
             }
