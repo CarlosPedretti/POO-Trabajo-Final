@@ -10,8 +10,14 @@ public class DamageEnemy : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            other.gameObject.GetComponent<HealthPlayer>().TakeDamage(damage);
+            IDamageable damageable = other.gameObject.GetComponent<IDamageable>();
+            if (damageable != null)
+            {
+                damageable.TakeDamage(damage);
+            }
 
         }
     }
+
+
 }

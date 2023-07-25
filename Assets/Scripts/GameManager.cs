@@ -9,8 +9,7 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
     //[SerializeField] private GameObject GameOverScreen;
-   // public float delayBeforeGameOver = 1f;
-
+    //public float delayBeforeGameOver = 1f;
     //[SerializeField] private GameObject WinScene;
 
     [SerializeField] private TextMeshProUGUI seedCountText1;
@@ -24,6 +23,12 @@ public class GameManager : MonoBehaviour
 
     public static GameManager Instance { get; private set; }
 
+
+
+    private void Start()
+    {
+        StartTimer();
+    }
 
     private void Awake()
     {
@@ -77,10 +82,6 @@ public class GameManager : MonoBehaviour
     private float elapsedTime;
     private bool isTimerRunning;
 
-    void Start()
-    {
-        StartTimer();
-    }
 
     void Update()
     {
@@ -116,8 +117,9 @@ public class GameManager : MonoBehaviour
 
     private void GameOver()
     {
-        SceneManager.LoadScene("Dead");
-        Time.timeScale = 0f;
+         SceneManager.LoadScene("Dead");
+         Time.timeScale = 0f;
+       
     }
 
     /*private void ShowGameOver()
@@ -137,7 +139,6 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         Time.timeScale = 1f;
     }
-
     */
 
 }

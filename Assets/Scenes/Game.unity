@@ -14102,10 +14102,10 @@ GameObject:
   - component: {fileID: 1050780293}
   - component: {fileID: 1050780292}
   - component: {fileID: 1050780291}
-  - component: {fileID: 1050780290}
-  - component: {fileID: 1050780289}
   - component: {fileID: 1050780288}
   - component: {fileID: 1050780287}
+  - component: {fileID: 1050780290}
+  - component: {fileID: 1050780289}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class HealthPlayer : MonoBehaviour
+public class HealthPlayer : MonoBehaviour, IDamageable
 {
     [SerializeField] private int maxHealth = 100;
     [SerializeField] private int currentHealth;
@@ -20,7 +20,7 @@ public class HealthPlayer : MonoBehaviour
         damageFlash = GetComponent<DamageFlash>();
     }
 
-  
+
     public void TakeDamage(int damage)
     {
         currentHealth -= damage;
@@ -34,6 +34,10 @@ public class HealthPlayer : MonoBehaviour
         }
         damageFlash.CallDamageFlash();
     }
+
+
+
+
 
 
 
