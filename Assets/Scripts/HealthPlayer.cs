@@ -12,6 +12,9 @@ public class HealthPlayer : MonoBehaviour, IDamageable
     private DamageFlash damageFlash;
     [SerializeField] private GameObject hitEffect;
 
+    public delegate void Scenes();
+    public static Scenes sceneDead;
+
     void Start()
     {
         currentHealth = maxHealth;
@@ -25,11 +28,11 @@ public class HealthPlayer : MonoBehaviour, IDamageable
     {
         currentHealth -= damage;
         healthBar.SetHealth(currentHealth);
-        if (currentHealth <= 0)
+        if (currentHealth <= 0 && sceneDead != null)
         {
           
             Destroy(gameObject, 1f);
-            SceneManager.LoadScene("Dead");
+            sceneDead();
 
         }
         damageFlash.CallDamageFlash();

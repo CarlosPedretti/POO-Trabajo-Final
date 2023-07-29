@@ -17,6 +17,10 @@ public class Player : MonoBehaviour
     public ReceptorPlanta receptorPlanta;
     public Water waterObject;
 
+    public delegate void Scenes();
+    public static Scenes sceneWinner;
+
+
 
 
     void Start()
@@ -125,6 +129,10 @@ public class Player : MonoBehaviour
         {
             Vector2 difference = transform.position - collision.transform.position;
             transform.position = new Vector2(transform.position.x + difference.x, transform.position.y + difference.y);
+        }
+        else if (collision.gameObject.CompareTag("Winner")&& sceneWinner != null)
+        {
+            sceneWinner();
         }
     }
 
