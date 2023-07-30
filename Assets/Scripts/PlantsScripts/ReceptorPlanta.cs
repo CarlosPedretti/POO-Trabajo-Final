@@ -19,7 +19,7 @@ public class ReceptorPlanta : MonoBehaviour
     public bool IsPlantable()
     {
         bool isPlantable = plantedPlant == null;
-        Debug.Log("La planta es plantable: " + isPlantable);
+        //Debug.Log("La planta es plantable: " + isPlantable);
         return isPlantable;
     }
 
@@ -32,7 +32,7 @@ public class ReceptorPlanta : MonoBehaviour
         }
 
 
-        Debug.Log("Plant() called");
+        //Debug.Log("Plant() called");
         GameObject newPlantObject = new GameObject("Plant_" + plantConfig.plantName);
         newPlantObject.transform.position = transform.position;
         newPlantObject.transform.SetParent(transform);

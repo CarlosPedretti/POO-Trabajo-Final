@@ -17,6 +17,9 @@ public class Player : MonoBehaviour
     public ReceptorPlanta receptorPlanta;
     public Water waterObject;
 
+    public delegate void Scenes();
+    public static Scenes sceneWinner;
+
 
 
     void Start()
@@ -48,15 +51,26 @@ public class Player : MonoBehaviour
         {
             RaycastHit2D[] hits = Physics2D.CircleCastAll(transform.position, 0.5f, Vector2.zero);
 
-            Debug.Log("Apreté F");
 
             foreach (RaycastHit2D hit in hits)
             {
                 receptorPlanta = hit.collider.GetComponent<ReceptorPlanta>();
+
                 if (receptorPlanta != null)
                 {
                     PlantPlant();
+
+                    Planta planta = receptorPlanta.GetComponentInChildren<Planta>();
+
+                    if (planta != null)
+                    {
+                        if (planta.IsFullyGrown)
+                        {
+                            HarvestPlant();
+                        }
+                    }
                 }
+
 
             }
         }
@@ -65,7 +79,6 @@ public class Player : MonoBehaviour
         {
             RaycastHit2D[] hits = Physics2D.CircleCastAll(transform.position, 0.5f, Vector2.zero);
 
-            Debug.Log("Apreté G");
 
             foreach (RaycastHit2D hit in hits)
             {
@@ -99,6 +112,7 @@ public class Player : MonoBehaviour
         }
     }
 
+
     private void WaterPlant()
     {
         if (receptorPlanta != null && currentWaterOnWateringCan > 0)
@@ -108,7 +122,8 @@ public class Player : MonoBehaviour
             {
                 int waterConsumed = planta.Watering(currentWaterOnWateringCan);
                 currentWaterOnWateringCan -= waterConsumed;
-                Debug.Log("Me acabo de ejecutar WaterPlant(). Agua consumida: " + waterConsumed);
+
+                //Debug.Log("Me acabo de ejecutar WaterPlant(). Agua consumida: " + waterConsumed);
 
                 // Se asegura de que currentWaterOnWateringCan no sea negativo
                 currentWaterOnWateringCan = Mathf.Max(0, currentWaterOnWateringCan);
@@ -118,16 +133,17 @@ public class Player : MonoBehaviour
         GameManager.Instance.UpdateWaterUI();
     }
 
-
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void HarvestPlant()
     {
-        if (collision.gameObject.CompareTag("Enemy"))
+        if (receptorPlanta != null)
         {
-            Vector2 difference = transform.position - collision.transform.position;
-            transform.position = new Vector2(transform.position.x + difference.x, transform.position.y + difference.y);
+            Planta planta = receptorPlanta.GetComponentInChildren<Planta>();
+            if (planta != null)
+            {
+                planta.Harvesting();
+            }
         }
     }
-
 
 
     private void CollectWater()
@@ -143,7 +159,6 @@ public class Player : MonoBehaviour
                 currentWaterOnWateringCan += waterAmount; // Sumar la cantidad de agua recogida a la cantidad actual en la regadera
                 GameManager.currentWaterOnWateringCan = currentWaterOnWateringCan;
 
-                Debug.Log("Recogí " + waterAmount + " de agua.");
             }
             else
             {
@@ -152,8 +167,7 @@ public class Player : MonoBehaviour
                     waterObject.CurrentWaterAmount -= remainingCapacity; // Restar la cantidad de agua recogida de la fuente
                     currentWaterOnWateringCan += remainingCapacity; // Sumar la cantidad de agua recogida a la cantidad actual en la regadera
                     GameManager.currentWaterOnWateringCan = currentWaterOnWateringCan;
-
-                    Debug.Log("Recogí " + remainingCapacity + " de agua.");
+;
                 }
                 else
                 {
@@ -164,6 +178,24 @@ public class Player : MonoBehaviour
             GameManager.Instance.UpdateWaterUI();
         }
     }
+
+
+
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            Vector2 difference = transform.position - collision.transform.position;
+            transform.position = new Vector2(transform.position.x + difference.x, transform.position.y + difference.y);
+        }
+        else if (collision.gameObject.CompareTag("Winner") && sceneWinner != null)
+        {
+            sceneWinner();
+        }
+    }
+
+
 
 
 
@@ -199,6 +231,4 @@ public class Player : MonoBehaviour
             return 0;
         }
     }
-
-
 }

@@ -3,14 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using TMPro;
-using UnityEngine.Audio;
 using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-    //[SerializeField] private GameObject GameOverScreen;
-    //public float delayBeforeGameOver = 1f;
-    //[SerializeField] private GameObject WinScene;
 
     [SerializeField] private TextMeshProUGUI seedCountText1;
     [SerializeField] private TextMeshProUGUI seedCountText2;
@@ -23,11 +19,10 @@ public class GameManager : MonoBehaviour
 
     public static GameManager Instance { get; private set; }
 
-
-
+    
     private void Start()
     {
-        StartTimer();
+      StartTimer();
     }
 
     private void Awake()
@@ -115,30 +110,26 @@ public class GameManager : MonoBehaviour
         isTimerRunning = true;
     }
 
+    
     private void GameOver()
     {
          SceneManager.LoadScene("Dead");
-         Time.timeScale = 0f;
-       
+            
+    }
+    private void WinScreen()
+    {
+        SceneManager.LoadScene("Winner");
+    }
+    private void OnEnable()
+    {
+        HealthPlayer.sceneDead += GameOver;
+        Player.sceneWinner += WinScreen;
+    }
+    private void OnDisable()
+    {
+        HealthPlayer.sceneDead -= GameOver;
+        Player.sceneWinner -= WinScreen;    
     }
 
-    /*private void ShowGameOver()
-    {
-        GameOverScreen.SetActive(true);
-        Time.timeScale = 0f;
-    }
-
-    public void WinScreen()
-    {
-        WinScene.SetActive(true);
-        Time.timeScale = 0f;
-    }
-
-    public void RestartScene()
-    {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-        Time.timeScale = 1f;
-    }
-    */
 
 }
