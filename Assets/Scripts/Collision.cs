@@ -12,6 +12,7 @@ public class Collision : MonoBehaviour
             
             Destroy(other.gameObject, 2f);
             SceneManager.LoadScene("Dead");
+            
           
         }
     }

@@ -7,6 +7,7 @@ TagManager:
   - point
   - Enemy
   - Winner
+  - Dead
   layers:
   - Default
   - TransparentFX

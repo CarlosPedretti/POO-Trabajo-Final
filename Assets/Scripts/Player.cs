@@ -189,10 +189,16 @@ public class Player : MonoBehaviour
             Vector2 difference = transform.position - collision.transform.position;
             transform.position = new Vector2(transform.position.x + difference.x, transform.position.y + difference.y);
         }
-        else if (collision.gameObject.CompareTag("Winner") && sceneWinner != null)
+        
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        
+        if (collision.gameObject.CompareTag("Winner") && sceneWinner != null)
         {
             sceneWinner();
         }
+        
     }
 
 
