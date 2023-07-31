@@ -26,6 +26,8 @@ public class GameManager : MonoBehaviour
 
         GetAllSeedsOnScene();
 
+        SceneIndexHolder.InitialSceneBuildIndex = SceneManager.GetActiveScene().buildIndex;
+
     }
 
 
@@ -35,6 +37,14 @@ public class GameManager : MonoBehaviour
         int seeds = foundObjects.Length;
 
         return seeds;
+    }
+
+    public int GetAllPlantsOnScene()
+    {
+        var foundObjects = Object.FindObjectsOfType<ReceptorPlanta>();
+        int plants = foundObjects.Length;
+
+        return plants;
 
     }
 
@@ -49,9 +59,9 @@ public class GameManager : MonoBehaviour
             Instance = this;
         }
 
-        seedCountText1.text = "";
-        seedCountText2.text = "";
-        seedCountText3.text = "";
+        seedCountText1.text = "x0";
+        seedCountText2.text = "x0";
+        seedCountText3.text = "x0";
 
     }
 

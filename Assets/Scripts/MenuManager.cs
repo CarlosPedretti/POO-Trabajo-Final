@@ -7,9 +7,29 @@ using UnityEngine.Audio;
 
 public class MenuManager : MonoBehaviour
 {
+    int initialSceneBuildIndex;
+
+    private void Start()
+    {
+        initialSceneBuildIndex = SceneIndexHolder.InitialSceneBuildIndex;
+    }
+
     public void Play()
     {
+
+        SceneManager.LoadScene(initialSceneBuildIndex);
+    }
+
+    public void InitialPlay()
+    {
+
         SceneManager.LoadScene("Game");
+    }
+
+    public void RestartScene()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        Time.timeScale = 1f;
     }
 
     public void Exit()
@@ -27,6 +47,7 @@ public class MenuManager : MonoBehaviour
 
     public void NextLevel()
     {
-        SceneManager.LoadScene("Game2");
+        int nextSceneBuildIndex = initialSceneBuildIndex + 1;
+        SceneManager.LoadScene(nextSceneBuildIndex);
     }
 }
