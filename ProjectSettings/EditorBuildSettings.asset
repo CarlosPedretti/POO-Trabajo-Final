@@ -7,17 +7,17 @@ EditorBuildSettings:
   m_Scenes:
   - enabled: 1
     path: Assets/Scenes/Game.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
+    guid: 167c584d976241a41a26b4731c2b4e4b
   - enabled: 1
     path: Assets/Scenes/Menu.unity
     guid: 30e57efe604e4e94b9fada939d3aa8df
   - enabled: 1
-    path: Assets/Scenes/Dead.unity
-    guid: d6cf84844e85bcf43aac0c615d0ace15
-  - enabled: 1
-    path: Assets/Scenes/Winner.unity
+    path: Assets/Scenes/WinnerXD.unity
     guid: 0516f992f20216f479d547d4789ffdcf
   - enabled: 1
-    path: Assets/Scenes/Game2.unity
-    guid: f1477b29cafbb1547a6fb5f03416b5a7
+    path: Assets/Scenes/Dead.unity
+    guid: 0eacdef54ba6e06419a207cf43476f94
+  - enabled: 1
+    path: Assets/Scenes/Winner.unity
+    guid: d893b48c35d9a7b4aaacc1574cbe79c8
   m_configObjects: {}

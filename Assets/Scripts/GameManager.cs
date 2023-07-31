@@ -19,10 +19,23 @@ public class GameManager : MonoBehaviour
 
     public static GameManager Instance { get; private set; }
 
-    
+
     private void Start()
     {
-      StartTimer();
+        StartTimer();
+
+        GetAllSeedsOnScene();
+
+    }
+
+
+    public int GetAllSeedsOnScene()
+    {
+        var foundObjects = Object.FindObjectsOfType<Seed>();
+        int seeds = foundObjects.Length;
+
+        return seeds;
+
     }
 
     private void Awake()
@@ -43,7 +56,6 @@ public class GameManager : MonoBehaviour
     }
 
     //UI Seeds
-
     public void UpdateSeedUI(string seedType, int seedCount)
     {
         // Actualizar el texto de la UI según el tipo de semilla
@@ -110,11 +122,11 @@ public class GameManager : MonoBehaviour
         isTimerRunning = true;
     }
 
-    
+
     private void GameOver()
     {
-         SceneManager.LoadScene("Dead");
-            
+        SceneManager.LoadScene("Dead");
+
     }
     private void WinScreen()
     {
@@ -124,11 +136,13 @@ public class GameManager : MonoBehaviour
     {
         HealthPlayer.sceneDead += GameOver;
         Player.sceneWinner += WinScreen;
+        Player.sceneLosser += GameOver;
     }
     private void OnDisable()
     {
         HealthPlayer.sceneDead -= GameOver;
-        Player.sceneWinner -= WinScreen;    
+        Player.sceneWinner -= WinScreen;
+        Player.sceneLosser -= GameOver;
     }
 
 

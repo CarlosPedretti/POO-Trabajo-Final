@@ -17,14 +17,19 @@ public class Player : MonoBehaviour
     public ReceptorPlanta receptorPlanta;
     public Water waterObject;
 
+    public int allSeedsCollected;
+    public int totalOfSeedsOnScene;
+
     public delegate void Scenes();
     public static Scenes sceneWinner;
+    public static Scenes sceneLosser;
 
 
 
     void Start()
     {
         animator = gameObject.GetComponent<Animator>();
+        totalOfSeedsOnScene = GameManager.Instance.GetAllSeedsOnScene();
     }
 
     void FixedUpdate()
@@ -167,7 +172,7 @@ public class Player : MonoBehaviour
                     waterObject.CurrentWaterAmount -= remainingCapacity; // Restar la cantidad de agua recogida de la fuente
                     currentWaterOnWateringCan += remainingCapacity; // Sumar la cantidad de agua recogida a la cantidad actual en la regadera
                     GameManager.currentWaterOnWateringCan = currentWaterOnWateringCan;
-;
+                    ;
                 }
                 else
                 {
@@ -180,8 +185,6 @@ public class Player : MonoBehaviour
     }
 
 
-
-
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Enemy"))
@@ -189,12 +192,22 @@ public class Player : MonoBehaviour
             Vector2 difference = transform.position - collision.transform.position;
             transform.position = new Vector2(transform.position.x + difference.x, transform.position.y + difference.y);
         }
-        else if (collision.gameObject.CompareTag("Winner") && sceneWinner != null)
-        {
-            sceneWinner();
-        }
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Winner") && sceneWinner != null && GameManager.Instance != null)
+        {
+            if (allSeedsCollected == totalOfSeedsOnScene)
+            {
+                sceneWinner();
+            }
+            else
+            {
+                sceneLosser();
+            }
+        }
+    }
 
 
 
@@ -215,6 +228,7 @@ public class Player : MonoBehaviour
         }
 
         GameManager.Instance.UpdateSeedUI(seedType, GetSeedCount(seedType));
+        allSeedsCollected = this.GetTotalSeedsCollected();
 
 
 
@@ -230,5 +244,15 @@ public class Player : MonoBehaviour
         {
             return 0;
         }
+    }
+
+    public int GetTotalSeedsCollected()
+    {
+        int totalSeeds = 0;
+        foreach (var kpv in seedInventory)
+        {
+            totalSeeds += kpv.Value;
+        }
+        return totalSeeds;
     }
 }
