@@ -6,14 +6,17 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Game.unity
-    guid: 167c584d976241a41a26b4731c2b4e4b
-  - enabled: 1
     path: Assets/Scenes/Menu.unity
     guid: 30e57efe604e4e94b9fada939d3aa8df
   - enabled: 1
-    path: Assets/Scenes/WinnerXD.unity
-    guid: 0516f992f20216f479d547d4789ffdcf
+    path: Assets/Scenes/Game.unity
+    guid: 167c584d976241a41a26b4731c2b4e4b
+  - enabled: 1
+    path: Assets/Scenes/Game2.unity
+    guid: 98dec1c71bebd7a49a1946aa9cd0946e
+  - enabled: 1
+    path: Assets/Scenes/FinalGame.unity
+    guid: 3b3be8c41c5588f4e990b1da7b9f460a
   - enabled: 1
     path: Assets/Scenes/Dead.unity
     guid: 0eacdef54ba6e06419a207cf43476f94

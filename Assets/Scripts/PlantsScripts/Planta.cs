@@ -18,6 +18,7 @@ public class Planta : MonoBehaviour
     public Image[] plantaUIBars;
     public Image plantaUIBar;
 
+
     public void Setup(PlantConfig config)
     {
         plantConfig = config;
@@ -130,7 +131,7 @@ public class Planta : MonoBehaviour
         {
             currentGrowthTime += Time.deltaTime;
 
-            int spriteIndex = Mathf.RoundToInt((currentGrowthTime / plantConfig.growthTime) * (plantConfig.growthSprites.Length - 1));
+            int spriteIndex = Mathf.RoundToInt((currentGrowthTime / plantConfig.growthTime) * (plantConfig.growthSprites.Length - 1)); 
 
             if (spriteIndex >= 0 && spriteIndex < plantConfig.growthSprites.Length)
             {
@@ -168,9 +169,10 @@ public class Planta : MonoBehaviour
     }
 
 
-
     public void Harvesting()
     {
         Destroy(gameObject);
+
+        PlantInventoryManager.CollectPlant(plantConfig.plantName, 1);
     }
 }

@@ -18,6 +18,6 @@ MonoBehaviour:
   - {fileID: -1464498026, guid: 181349581160605408c6a7f8d4a8b6da, type: 3}
   - {fileID: -1763768910, guid: 181349581160605408c6a7f8d4a8b6da, type: 3}
   - {fileID: 150805072, guid: 181349581160605408c6a7f8d4a8b6da, type: 3}
-  growthTime: 3
+  growthTime: 4
   wateringTime: 3
-  quantityOfWaterNeeded: 10
+  quantityOfWaterNeeded: 8

@@ -19,10 +19,33 @@ public class GameManager : MonoBehaviour
 
     public static GameManager Instance { get; private set; }
 
-    
+
     private void Start()
     {
-      StartTimer();
+        StartTimer();
+
+        GetAllSeedsOnScene();
+
+        SceneIndexHolder.InitialSceneBuildIndex = SceneManager.GetActiveScene().buildIndex;
+
+    }
+
+
+    public int GetAllSeedsOnScene()
+    {
+        var foundObjects = Object.FindObjectsOfType<Seed>();
+        int seeds = foundObjects.Length;
+
+        return seeds;
+    }
+
+    public int GetAllPlantsOnScene()
+    {
+        var foundObjects = Object.FindObjectsOfType<ReceptorPlanta>();
+        int plants = foundObjects.Length;
+
+        return plants;
+
     }
 
     private void Awake()
@@ -36,14 +59,13 @@ public class GameManager : MonoBehaviour
             Instance = this;
         }
 
-        seedCountText1.text = "";
-        seedCountText2.text = "";
-        seedCountText3.text = "";
+        seedCountText1.text = "x0";
+        seedCountText2.text = "x0";
+        seedCountText3.text = "x0";
 
     }
 
     //UI Seeds
-
     public void UpdateSeedUI(string seedType, int seedCount)
     {
         // Actualizar el texto de la UI según el tipo de semilla
@@ -110,11 +132,11 @@ public class GameManager : MonoBehaviour
         isTimerRunning = true;
     }
 
-    
+
     private void GameOver()
     {
-         SceneManager.LoadScene("Dead");
-            
+        SceneManager.LoadScene("Dead");
+
     }
     private void WinScreen()
     {
@@ -124,11 +146,13 @@ public class GameManager : MonoBehaviour
     {
         HealthPlayer.sceneDead += GameOver;
         Player.sceneWinner += WinScreen;
+        Player.sceneLosser += GameOver;
     }
     private void OnDisable()
     {
         HealthPlayer.sceneDead -= GameOver;
-        Player.sceneWinner -= WinScreen;    
+        Player.sceneWinner -= WinScreen;
+        Player.sceneLosser -= GameOver;
     }
 
 
