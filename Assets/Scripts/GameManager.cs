@@ -28,6 +28,7 @@ public class GameManager : MonoBehaviour
         GetAllSeedsOnScene();
 
         SceneIndexHolder.InitialSceneBuildIndex = SceneManager.GetActiveScene().buildIndex;
+        initialSceneBuildIndex = SceneIndexHolder.InitialSceneBuildIndex;
 
     }
 
