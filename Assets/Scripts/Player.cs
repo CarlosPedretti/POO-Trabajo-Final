@@ -204,7 +204,11 @@ public class Player : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Winner") && sceneWinner != null && GameManager.Instance != null)
         {
-            if (allSeedsCollected == totalOfSeedsOnScene)
+            if (allSeedsCollected == totalOfSeedsOnScene && GameManager.Instance.initialSceneBuildIndex == 1)
+            {
+                sceneWinner();
+            }
+            else if (allPlantsCollected == totalOfPlantsOnScene && GameManager.Instance.initialSceneBuildIndex == 2)
             {
                 sceneWinner();
             }
@@ -213,14 +217,6 @@ public class Player : MonoBehaviour
                 sceneLosser();
             }
 
-            if (allPlantsCollected == totalOfPlantsOnScene)
-            {
-                sceneWinner();
-            }
-            else
-            {
-                sceneLosser();
-            }
         }
     }
 

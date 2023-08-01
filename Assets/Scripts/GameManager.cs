@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI waterCountText;
 
     public static int currentWaterOnWateringCan;
+    public int initialSceneBuildIndex;
 
 
     public static GameManager Instance { get; private set; }
